@@ -16,7 +16,7 @@ module.exports = {
         path: path.join(__dirname, '/dist/'),
         filename: '[name].js',
         publicPath: '/',
-        chunkFilename: '[name].[chunkhas:5].chunk.js'
+        chunkFilename: '[name].[chunkhash:5].chunk.js'
     },
     plugins: [
         new HtmlWebpackPlugin({

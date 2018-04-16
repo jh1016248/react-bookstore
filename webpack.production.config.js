@@ -12,8 +12,9 @@ module.exports = {
     // Where you want the output to go
     output: {
         path: path.join(__dirname, '/dist/'),
-        filename: '[name]-[hash].min.js',
-        publicPath: ''
+        filename: '[name].js',
+        publicPath: '/',
+        chunkFilename: '[name].[chunkhash:5].chunk.js'
     },
     plugins: [
         // webpack gives your modules and chunks ids to identify them. Webpack can vary the

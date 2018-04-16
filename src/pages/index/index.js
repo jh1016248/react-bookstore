@@ -12,11 +12,7 @@ class Index extends Component {
     render() {
         return (
             <div className="wrap">
-                <div>
-                    <a href="javascript:;" onClick={this.handelClick.bind(this)}>http request</a>
-                    <br/>
-                    <Link to="/chat">to chat</Link>
-                </div>
+                index
             </div>
         )
     }
