@@ -24,7 +24,7 @@ module.exports = [
         }
     },
     {
-        path: '/book/:id/page',
+        path: '/book/:id/:page',
         getComponent(nextState, cb) {
             require.ensure([], (require) => {
                 cb(null, require('../pages/book/page').default)
