@@ -1,25 +1,20 @@
-const INIT_MESSAGE_LSIT = 'INIT_MESSAGE_LSIT'
-const ADD_MESSAGE = 'ADD_MESSAGE'
+const CHANGE_DIRECTION = 'CHANGE_DIRECTION'
 
-let MessageList = (state, action) => {
+let RouterActivity = (state, action) => {
     if(!state) {
         state = {
-            messageList: []
+            direction: 'forward'
         }
     }
     switch (action.type) {
-        case INIT_MESSAGE_LSIT: 
+        case CHANGE_DIRECTION: 
             return {
-                messageList: action.list
-            }
-        case ADD_MESSAGE:
-            return {
-                messageList: [...state.messageList, action.item]
+                direction: action.direction
             }
         default:
             return state
     }
 }
 
-export default MessageList
+export default RouterActivity
 
