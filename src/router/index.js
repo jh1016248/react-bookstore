@@ -1,15 +1,27 @@
-import React, { Component } from 'react';
-import { Router, IndexRoute, Link, Route, browserHistory } from 'react-router';
+import React, { Component } from 'react'
+import { Router, IndexRoute, Link, Route, browserHistory } from 'react-router'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Index from '../pages/index';
+import Header from '../components/header'
 //按需加载 https://segmentfault.com/a/1190000007141049
 class App extends Component {
 	constructor(props) {
         super(props)
-    }
+	}
+	
 	render() {
 		return (
 			<div className="app">
-				{this.props.children}
+				<ReactCSSTransitionGroup
+					component="div"
+					className="transition-wrapper"
+					transitionName="example"
+					transitionEnterTimeout={500}
+					transitionLeaveTimeout={500}>
+					{React.cloneElement(this.props.children, {
+						key: this.props.location.pathname
+					})}
+				</ReactCSSTransitionGroup>
 			</div>
 		);
 	}

@@ -1,0 +1,43 @@
+#root{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+.page{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+}
+
+.example-enter {
+    opacity: 0.01;
+    transform: translateX(100%);
+    transition: all .3s ease-in;
+}
+
+.example-enter.example-enter-active {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.example-leave {
+    transform: translateX(0);
+    opacity: 1;
+    transition: all .3s ease-in;
+}
+
+.example-leave.example-leave-active {
+    transform: translateX(-20%);
+    opacity: 0;
+}
+
+.transition-wrapper {
+    height: 100%;
+}

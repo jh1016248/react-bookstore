@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import React, { Component } from 'react'
+import { Link } from 'react-router'
+import LogoHeader from '../../components/logoHeader'
+import RouterActivity from '../../containers/routerActivity'
 
 class Index extends Component {
     constructor() {
         super()
     }
 
-    handelClick() {
-    }
-
     render() {
         return (
-            <div className="wrap">
-                index
+            <div className="page">
+                <LogoHeader />
             </div>
         )
     }
 }
 
-export default Index
+export default RouterActivity(Index)

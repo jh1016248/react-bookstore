@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import React, { Component } from 'react'
+import { Link } from 'react-router'
+import RouterActivity from '../../containers/routerActivity'
 
 class Book extends Component {
     constructor() {
         super()
     }
 
-    handelClick() {
-    }
-
     render() {
         return (
-            <div className="wrap">
-                i'm book
+            <div className="page">
+                <Link to="/">index</Link>
             </div>
         )
     }
 }
 
-export default Book
+export default RouterActivity(Book)
