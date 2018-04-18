@@ -6,7 +6,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Index from '../pages/index';
 import Header from '../components/header'
 //按需加载 https://segmentfault.com/a/1190000007141049
-
+sessionStorage.clear()
 class App extends Component {
     static propTypes = {
         direction: PropTypes.string
@@ -23,8 +23,8 @@ class App extends Component {
 					component="div"
 					className="transition-wrapper"
 					transitionName={ this.props.direction === 'forward' ? 'fade-in-right' : 'fade-in-left' }
-					transitionEnterTimeout={500}
-					transitionLeaveTimeout={500}>
+					transitionEnterTimeout={300}
+					transitionLeaveTimeout={300}>
 					{React.cloneElement(this.props.children, {
 						key: this.props.location.pathname
 					})}

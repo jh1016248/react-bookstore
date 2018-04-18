@@ -15,7 +15,15 @@ export default (WrappedComponent) => {
         }
 
         componentDidMount() {
-            console.log(this.props.direction)
+            let session = sessionStorage
+            let path = this.props.location.pathname
+            let sessionPath = session.getItem(path)
+            let historyCount = session.getItem('historyCount') * 1 || 0
+            if(!sessionPath || sessionPath == '') {
+                session.setItem(path, historyCount + 1)
+                session.setItem('historyCount', historyCount + 1)
+            }
+
             this.props.router.setRouteLeaveHook(
                 this.props.route,
                 this.routerWillLeave.bind(this)
@@ -26,27 +34,19 @@ export default (WrappedComponent) => {
             let session = sessionStorage
             let path = this.props.location.pathname
             let historyCount = session.getItem('historyCount') * 1 || 0
-            let sessionNextPath = session.getItem(nextLocation.pathname) * 1
+            let sessionNextPath = session.getItem(nextLocation.pathname)
             let sessionPath = session[path]
-
-            if(!sessionPath || sessionPath == '') {
-                session.setItem(path, historyCount + 1)
+            if(!sessionNextPath || sessionNextPath == '') {
                 session.setItem('historyCount', historyCount + 1)
+                session.setItem(nextLocation.pathname, historyCount + 1)
                 this.props.changeDirection('forward')
             }
             else{
-                if(!sessionNextPath || sessionNextPath == '') {
-                    session.setItem('historyCount', historyCount + 1)
-                    session.setItem(sessionNextPath, historyCount + 1)
+                if(sessionNextPath > sessionPath) {
                     this.props.changeDirection('forward')
                 }
                 else{
-                    if(sessionNextPath > sessionPath) {
-                        this.props.changeDirection('forward')
-                    }
-                    else{
-                        this.props.changeDirection('backward')
-                    }
+                    this.props.changeDirection('backward')
                 }
             }
             return true;
