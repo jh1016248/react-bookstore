@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router'
+import './styles/logoHeader.less'
 
 class LogoHeader extends Component {
     static propTypes = {
@@ -11,8 +12,8 @@ class LogoHeader extends Component {
     render() {
         return (
             <div className="logo-header">
-                <Link to="/"><img src="../static/images/logo.png" /></Link>
-                <Link to="/book/123">我的书架</Link>
+                <Link to="/" className="logo"><img src="../static/images/logo.png" /></Link>
+                <Link to="/book/123" className="my-books"><span className="iconfont icon-books"></span>我的书架</Link>
             </div>
         )
     }
