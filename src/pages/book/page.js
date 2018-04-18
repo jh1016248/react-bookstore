@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import React, { Component } from 'react'
+import { Link } from 'react-router'
+import RouterActivity from '../../containers/routerActivity'
 
 class Page extends Component {
     constructor() {
         super()
     }
 
-    handelClick() {
-    }
-
     render() {
         return (
-            <div className="wrap">
-                page
+            <div className="page">
+                <LogoHeader />
+                <Link to="/ranking">ranking</Link>
             </div>
         )
     }
 }
 
-export default Page
+export default RouterActivity(Page)

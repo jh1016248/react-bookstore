@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import React, { Component } from 'react'
+import { Link } from 'react-router'
+import RouterActivity from '../../containers/routerActivity'
 
 class BookListDetail extends Component {
     constructor() {
         super()
     }
 
-    handelClick() {
-    }
-
     render() {
         return (
-            <div className="wrap">
-                BookListDetail
+            <div className="page">
+                <LogoHeader />
+                <Link to="/ranking">ranking</Link>
             </div>
         )
     }
 }
 
-export default BookListDetail
+export default RouterActivity(BookListDetail)
