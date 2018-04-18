@@ -13,17 +13,17 @@ new WebpackDevServer(webpack(config), {
     noInfo: false,
     stats: {
       // Config for minimal console.log mess.
-      assets: false,
-      colors: true,
-      version: false,
-      hash: false,
-      timings: false,
-      chunks: false,
-      chunkModules: false
+        assets: false,
+        colors: true,
+        version: false,
+        hash: false,
+        timings: false,
+        chunks: false,
+        chunkModules: false
     }
 }).listen(3001, 'localhost', function (err) {
     if (err) {
         console.log(err);
     }
-  console.log('Listening at localhost:3001');
+    console.log('Listening at localhost:3001');
 });
