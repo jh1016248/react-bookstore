@@ -1,21 +1,19 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
+import React, { Component } from 'react'
+import { Link } from 'react-router'
+import RouterActivity from '../../containers/routerActivity'
 
 class Ranking extends Component {
     constructor() {
         super()
     }
 
-    handelClick() {
-    }
-
     render() {
         return (
-            <div className="wrap">
-                ranking
+            <div className="page">
+                <Link to="/ranking/123">rankingDetail</Link>
             </div>
         )
     }
 }
 
-export default Ranking
+export default RouterActivity(Ranking)

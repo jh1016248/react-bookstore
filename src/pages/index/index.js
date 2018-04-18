@@ -12,6 +12,7 @@ class Index extends Component {
         return (
             <div className="page">
                 <LogoHeader />
+                <Link to="/ranking">ranking</Link>
             </div>
         )
     }
