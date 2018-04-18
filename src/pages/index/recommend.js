@@ -10,8 +10,7 @@ class Recommend extends Component {
     render() {
         return (
             <div className="page">
-                <LogoHeader />
-                <Link to="/ranking">ranking</Link>
+                <Link to="/recommend/213">recommendDetail</Link>
             </div>
         )
     }

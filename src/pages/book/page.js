@@ -10,8 +10,7 @@ class Page extends Component {
     render() {
         return (
             <div className="page">
-                <LogoHeader />
-                <Link to="/ranking">ranking</Link>
+                <Link to="/book/123/category">category</Link>
             </div>
         )
     }

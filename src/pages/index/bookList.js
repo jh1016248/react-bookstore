@@ -10,8 +10,7 @@ class BookList extends Component {
     render() {
         return (
             <div className="page">
-                <LogoHeader />
-                <Link to="/ranking">ranking</Link>
+                <Link to="/bookList/213">bookListDetail</Link>
             </div>
         )
     }

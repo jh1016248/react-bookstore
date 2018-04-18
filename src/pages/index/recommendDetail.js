@@ -10,11 +10,10 @@ class RecommendDetail extends Component {
     render() {
         return (
             <div className="page">
-                <LogoHeader />
-                <Link to="/ranking">ranking</Link>
+                <Link to="/search/123">search</Link>
             </div>
         )
     }
 }
 
-export default RouterActivity(RecommenDetaild)
+export default RouterActivity(RecommendDetail)

@@ -10,8 +10,7 @@ class Comment extends Component {
     render() {
         return (
             <div className="page">
-                <LogoHeader />
-                <Link to="/ranking">ranking</Link>
+                <Link to="/">index</Link>
             </div>
         )
     }

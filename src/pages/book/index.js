@@ -9,8 +9,8 @@ class Book extends Component {
 
     render() {
         return (
-            <div className="page" style={{background: "#f5f5f5"}}>
-                <Link to="/">index</Link>
+            <div className="page" style={{background: "#fff"}}>
+                <Link to="/book/1/1">page1</Link>
             </div>
         )
     }

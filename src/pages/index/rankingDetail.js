@@ -10,7 +10,7 @@ class RankingDetail extends Component {
     render() {
         return (
             <div className="page">
-                <Link to="/ranking">ranking</Link>
+                <Link to="/category">category</Link>
             </div>
         )
     }
