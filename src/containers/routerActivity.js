@@ -15,25 +15,40 @@ export default (WrappedComponent) => {
         }
 
         componentDidMount() {
-            let path = this.props.route.path
-            let session = sessionStorage
-            let historyCount = session.getItem('historyCount') * 1 || 0
-
-            if(!session[path] || session[path] === '') {
-                session.setItem(path, historyCount + 1)
-                session.setItem('historyCount', historyCount)
-            }
-            else{
-
-            }
+            console.log(this.props.direction)
             this.props.router.setRouteLeaveHook(
                 this.props.route,
-                this.routerWillLeave
+                this.routerWillLeave.bind(this)
             )
         }
         
         routerWillLeave(nextLocation) {
-            console.log(nextLocation)
+            let session = sessionStorage
+            let path = this.props.location.pathname
+            let historyCount = session.getItem('historyCount') * 1 || 0
+            let sessionNextPath = session.getItem(nextLocation.pathname) * 1
+            let sessionPath = session[path]
+
+            if(!sessionPath || sessionPath == '') {
+                session.setItem(path, historyCount + 1)
+                session.setItem('historyCount', historyCount + 1)
+                this.props.changeDirection('forward')
+            }
+            else{
+                if(!sessionNextPath || sessionNextPath == '') {
+                    session.setItem('historyCount', historyCount + 1)
+                    session.setItem(sessionNextPath, historyCount + 1)
+                    this.props.changeDirection('forward')
+                }
+                else{
+                    if(sessionNextPath > sessionPath) {
+                        this.props.changeDirection('forward')
+                    }
+                    else{
+                        this.props.changeDirection('backward')
+                    }
+                }
+            }
             return true;
         }
 
@@ -44,7 +59,7 @@ export default (WrappedComponent) => {
 
     const mapStateToProps = state => {
         return {
-            direction: state.routerActivity.direction
+            direction: state.RouterActivity.direction
         }
     }
     

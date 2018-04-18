@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import { Router, IndexRoute, Link, Route, browserHistory } from 'react-router'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import Index from '../pages/index';
 import Header from '../components/header'
 //按需加载 https://segmentfault.com/a/1190000007141049
+
 class App extends Component {
+    static propTypes = {
+        direction: PropTypes.string
+    }
+
 	constructor(props) {
         super(props)
-	}
+    }
 	
 	render() {
 		return (
@@ -15,7 +22,7 @@ class App extends Component {
 				<ReactCSSTransitionGroup
 					component="div"
 					className="transition-wrapper"
-					transitionName="example"
+					transitionName={ this.props.direction === 'forward' ? 'fade-in-right' : 'fade-in-left' }
 					transitionEnterTimeout={500}
 					transitionLeaveTimeout={500}>
 					{React.cloneElement(this.props.children, {
@@ -26,6 +33,12 @@ class App extends Component {
 		);
 	}
 }
+
+const AppContainer = connect(state => {
+    return {
+        direction: state.RouterActivity.direction
+    }
+})(App)
 
 const rootRoute = {
     path: '/',
@@ -38,7 +51,7 @@ const rootRoute = {
     },
     getComponent(nextState, cb) {
         require.ensure([], (require) => {
-            cb(null, App)
+            cb(null, AppContainer)
         }, 'App')
     },
     childRoutes: require('./indexModules').concat(require('./bookModules'))
