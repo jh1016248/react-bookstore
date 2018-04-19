@@ -3,8 +3,8 @@ import { Link } from 'react-router'
 import RouterActivity from '../../containers/routerActivity'
 
 class Ranking extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
     }
 
     render() {

@@ -5,6 +5,7 @@
     right: 0;
     bottom: 0;
     overflow: hidden;
+    font-size: .24rem;
 }
 
 .page{
@@ -13,13 +14,14 @@
     top: 0;
     bottom: 0;
     right: 0;
-    overflow: hidden;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 .fade-in-right-enter {
     opacity: 0.01;
     transform: translateX(100%);
-    transition: all .3s ease-in;
+    transition: all .3s linear;
 }
 
 .fade-in-right-enter.fade-in-right-enter-active {
@@ -30,7 +32,7 @@
 .fade-in-right-leave {
     transform: translateX(0);
     opacity: 1;
-    transition: all .3s ease-in;
+    transition: all .3s linear;
 }
 
 .fade-in-right-leave.fade-in-right-leave-active {
@@ -41,7 +43,7 @@
 .fade-in-left-enter {
     opacity: 0.01;
     transform: translateX(-40%);
-    transition: all .3s ease-in;
+    transition: all .3s linear;
 }
 
 .fade-in-left-enter.fade-in-left-enter-active {
@@ -52,7 +54,7 @@
 .fade-in-left-leave {
     transform: translateX(0);
     opacity: 1;
-    transition: all .3s ease-in;
+    transition: all .3s linear;
 }
 
 .fade-in-left-leave.fade-in-left-leave-active {

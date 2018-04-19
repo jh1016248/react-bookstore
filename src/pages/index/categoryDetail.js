@@ -3,11 +3,15 @@ import { Link } from 'react-router'
 import RouterActivity from '../../containers/routerActivity'
 
 class CategoryDetail extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
     }
 
-    render() {
+    componentWillMount() {
+        console.log(this.props)
+    }
+    
+    render() {  
         return (
             <div className="page">
                 <Link to="/bookList">bookList</Link>

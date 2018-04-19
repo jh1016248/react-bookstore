@@ -3,23 +3,30 @@ import { Router, IndexRoute, Link, Route, browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import Index from '../pages/index';
+import Index from '../pages/index'
 import Header from '../components/header'
-//按需加载 https://segmentfault.com/a/1190000007141049
+import { Toast } from 'react-weui'
+
 sessionStorage.clear()
 class App extends Component {
     static propTypes = {
-        direction: PropTypes.string
+        direction: PropTypes.string,
+        isLoading: PropTypes.bool,
+        navIndex: PropTypes.number
     }
 
 	constructor(props) {
         super(props)
     }
+
+    componentWillMount() {
+       console.log(this.props) 
+    }
 	
 	render() {
 		return (
 			<div className="app">
-				<ReactCSSTransitionGroup
+				{/* <ReactCSSTransitionGroup
 					component="div"
 					className="transition-wrapper"
 					transitionName={ this.props.direction === 'forward' ? 'fade-in-right' : 'fade-in-left' }
@@ -28,7 +35,10 @@ class App extends Component {
 					{React.cloneElement(this.props.children, {
 						key: this.props.location.pathname
 					})}
-				</ReactCSSTransitionGroup>
+                </ReactCSSTransitionGroup> */}
+                {this.props.children}
+                <Toast show={ this.props.isLoading } icon="loading"/>
+                {/* <div className="loading" style={{position: 'absolute',display:  ? 'block' : 'none'}}>loading</div> */}
 			</div>
 		);
 	}
@@ -36,7 +46,9 @@ class App extends Component {
 
 const AppContainer = connect(state => {
     return {
-        direction: state.RouterActivity.direction
+        direction: state.RouterActivity.direction,
+        isLoading: state.RouterActivity.isLoading,
+        navIndex: state.RouterActivity.navIndex
     }
 })(App)
 
@@ -60,10 +72,12 @@ const rootRoute = {
 class router extends Component {
 	constructor(props) {
 		super(props)
-	}
+    }
+    
 	componentDidMount() {
-        
-	}
+        console.log(this.props)
+    }
+    
 	render() {
 		return (
 			<Router history={ browserHistory } routes={ rootRoute }></Router>

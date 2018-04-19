@@ -3,9 +3,9 @@ import { Link } from 'react-router'
 import RouterActivity from '../../containers/routerActivity'
 
 class Book extends Component {
-    constructor() {
-        super()
-    }
+    constructor(props) {
+		super(props)
+	}
 
     render() {
         return (

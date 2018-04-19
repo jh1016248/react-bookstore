@@ -3,15 +3,25 @@ import { withRouter } from 'react-router'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
+const hrefs = {
+    '/': 0,
+    '/category': 1,
+    '/ranking': 2,
+    '/bookList': 3,
+}
+
 export default (WrappedComponent) => {
     class ReactActivity extends Component {
         static propTypes = {
             direction: PropTypes.string,
-            changeDirection: PropTypes.func
+            changeDirection: PropTypes.func,
+            changeLoading: PropTypes.func,
+            changeNavIndex: PropTypes.func,
+            navIndex: PropTypes.number
         }
         
-        constructor() {
-            super();
+        constructor(props) {
+            super(props)
         }
 
         componentDidMount() {
@@ -23,6 +33,9 @@ export default (WrappedComponent) => {
                 session.setItem(path, historyCount + 1)
                 session.setItem('historyCount', historyCount + 1)
             }
+
+            this.props.changeNavIndex(hrefs[path] || 0)
+            this.props.changeLoading(false)
 
             this.props.router.setRouteLeaveHook(
                 this.props.route,
@@ -49,6 +62,7 @@ export default (WrappedComponent) => {
                     this.props.changeDirection('backward')
                 }
             }
+            this.props.changeLoading(true)
             return true;
         }
 
@@ -59,7 +73,8 @@ export default (WrappedComponent) => {
 
     const mapStateToProps = state => {
         return {
-            direction: state.RouterActivity.direction
+            direction: state.RouterActivity.direction,
+            navIndex: state.RouterActivity.navIndex
         }
     }
     
@@ -70,9 +85,21 @@ export default (WrappedComponent) => {
                     type: "CHANGE_DIRECTION",
                     direction
                 })
+            },
+            changeLoading: loading => {
+                dispatch({
+                    type: "CHANGE_LOADING",
+                    loading
+                })
+            },
+            changeNavIndex: index => {
+                dispatch({
+                    type: "CHANGE_NAV_INDEX",
+                    index
+                })
             }
         }
     }
 
-    return withRouter(connect(mapStateToProps, mapDispatchToProps)(ReactActivity))
+    return connect(mapStateToProps, mapDispatchToProps)(withRouter(ReactActivity))
 }

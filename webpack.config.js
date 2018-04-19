@@ -58,9 +58,17 @@ module.exports = {
                 loader: "style!css"
             },
             {
+                test: /\.(jpg|png)$/, 
+                loader: "url?limit=8192"
+            },
+            {
                 test: /\.less/,
                 loader: 'style-loader!css-loader!less-loader'
-            }
+            },
+            {
+                test: /\.(svg|woff|woff2|ttf|eot)$/,
+                loader: 'file-loader'
+            },
         ]
     }
 };

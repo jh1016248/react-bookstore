@@ -1,6 +1,6 @@
 ##react项目基础框架
 
-引入: react, react-router, react-redux, less, ant-design, prop-types, axios
+引入: react, react-router, react-redux, less, ant-design, prop-types, axios, react-weui
 
 ##启动
 npm start
@@ -12,6 +12,8 @@ npm run build
 
 ##参考
 * [react小书](http://huziketang.mangojuice.top/books/react/) 
+
+//按需加载 https://segmentfault.com/a/1190000007141049
 
 router
     /index
@@ -32,5 +34,5 @@ router
                 /category
                 /comment
     
-        
-        
+    
+1、react-redux dispatch修改数据需要每次都返回所有state (...state)

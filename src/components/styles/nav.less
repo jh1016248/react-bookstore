@@ -1,0 +1,40 @@
+.header-nav{
+    display: flex;
+    height: .8rem;
+    background: #b93321;
+    text-align: center;
+    line-height: .8rem;
+    a{
+        position: relative;
+        flex: 1;
+        color: #ddada9;
+        &.active{
+            color: #fff;
+            &:after{
+                content: ' ';
+                display: block;
+                position: absolute;
+                bottom: -.06rem;
+                left: 50%;
+                margin-left: -.1rem;
+                width: .2rem;
+                height: .2rem;
+                background: url(../../asset/images/icon/nav-active.png) no-repeat;
+                background-size: 100%;
+            }
+        }
+        &::before{
+            content: ' ';
+            display: block;
+            position: absolute;
+            right: 0;
+            width: .015rem;
+            height: .4rem;
+            background: #b38682;
+            top: .2rem;
+        }
+        &:last-child:after{
+            display: none;
+        }
+    }
+}
