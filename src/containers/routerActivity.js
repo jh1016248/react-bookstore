@@ -67,7 +67,18 @@ export default (WrappedComponent) => {
         }
 
         render() {
-            return <WrappedComponent/>
+            console.log(this.props)
+            let props = this.props
+            let obj = {
+                params: props.params,
+                location: props.location,
+                history: props.history,
+                routeParams: props.routeParams,
+                router: props.router,
+                routes: props.routes
+            }
+            return <WrappedComponent {...obj}/>
+                
         }
     }
 

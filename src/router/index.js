@@ -20,25 +20,22 @@ class App extends Component {
     }
 
     componentWillMount() {
-       console.log(this.props) 
     }
 	
 	render() {
 		return (
 			<div className="app">
-				{/* <ReactCSSTransitionGroup
+				<ReactCSSTransitionGroup
 					component="div"
 					className="transition-wrapper"
 					transitionName={ this.props.direction === 'forward' ? 'fade-in-right' : 'fade-in-left' }
 					transitionEnterTimeout={300}
 					transitionLeaveTimeout={300}>
-					{React.cloneElement(this.props.children, {
+					{this.props.children && React.cloneElement(this.props.children, {
 						key: this.props.location.pathname
 					})}
-                </ReactCSSTransitionGroup> */}
-                {this.props.children}
+                </ReactCSSTransitionGroup>
                 <Toast show={ this.props.isLoading } icon="loading"/>
-                {/* <div className="loading" style={{position: 'absolute',display:  ? 'block' : 'none'}}>loading</div> */}
 			</div>
 		);
 	}
@@ -72,10 +69,6 @@ const rootRoute = {
 class router extends Component {
 	constructor(props) {
 		super(props)
-    }
-    
-	componentDidMount() {
-        console.log(this.props)
     }
     
 	render() {

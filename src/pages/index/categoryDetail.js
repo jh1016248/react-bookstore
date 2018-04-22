@@ -7,10 +7,12 @@ class CategoryDetail extends Component {
         super(props)
     }
 
+    
     componentWillMount() {
         console.log(this.props)
     }
-    
+
+
     render() {  
         return (
             <div className="page">
