@@ -15,8 +15,8 @@ const getSubCategories = () => {
    /category-info?gender=male&type=hot&major=奇幻&minor=&start=0&limit=20'
     gender, type, major(主分类), minor(子分类), start, limit
 */
-const getCategoryInfo = (gender, type, major, minor, start, limit) => {
-    return checkHistory(host + '/category-info?gender='+ gender +'&type='+ type +'&major='+ major +'&minor='+ minor +'&start='+ start +'&limit=' + limit)
+const getCategoryInfo = (sendData) => {
+    return checkHistory(host + '/category-info?gender='+ sendData.gender +'&type='+ sendData.type +'&major='+ sendData.major +'&minor='+ sendData.minor +'&start='+ sendData.start +'&limit=' + sendData.limit)
 }
 
 //获取书籍详情  http://novel.juhe.im/book-info/53115e30173bfacb4904897e
