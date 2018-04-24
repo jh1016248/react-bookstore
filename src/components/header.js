@@ -13,8 +13,8 @@ class Header extends Component {
     render() {
         return (
             <div className="header">
-                <a href="javascript:;" onClick={browserHistory.goBack} className="iconfont icon-back"></a>
-                <h3>{this.props.title}</h3>
+                <a href="javascript:;" onClick={ browserHistory.goBack } className="iconfont icon-back"></a>
+                <h3>{ this.props.title }</h3>
                 <Link to="/" className="iconfont icon-home"></Link>
             </div>
         )

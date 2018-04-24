@@ -10,7 +10,6 @@ import axios from 'axios'
 import './asset/css/reset.css'
 import './asset/css/common.less'
 import './asset/css/index.less'
-
 import 'weui'
 import 'react-weui/build/packages/react-weui.css'
 

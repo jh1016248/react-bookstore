@@ -1,0 +1,41 @@
+.filter-wrap{
+    position: fixed;
+    top: .9rem;
+    background: #fff;
+    width: 100%;
+    transition: all .3s;
+    box-shadow: 0 .015rem .02rem rgba(0,0,0,.1);
+    .filter-items{
+        width: 100%;
+        overflow-x: hidden;
+        height: .9rem;
+        .inner{
+            overflow: auto;
+            width: 100%;
+            ul{
+                width: auto;
+                height: 100%;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                font-size: 0;
+                li{
+                    display: inline-block;  
+                    line-height: .9rem;
+                    padding: 0 .3rem;
+                    font-size: .24rem;
+                    &.active{
+                        color: #b93321
+                    }
+                }
+            }
+        }
+    }
+    .minus{
+        height: .9rem;
+        line-height: .9rem;
+        text-align: center;
+        .iconfont{
+            margin-left: .1rem;
+        }
+    }
+}

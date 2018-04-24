@@ -1,0 +1,49 @@
+.book-list{
+    ul{
+        li{
+            padding: .2rem;
+            background: #f5f2ed;
+            overflow: hidden;
+            img{
+                float: left;
+                height: 1.7rem;
+                margin-right: .2rem;
+            }
+            .info{
+                h3{
+                    font-weight: normal;
+                    font-size: .3rem;
+                    line-height: .5rem;
+                    margin-bottom: .1rem;
+                }
+                p{
+                    line-height: 1.2;
+                    display: block;
+                    overflow: hidden;
+                    text-overflow:ellipsis;
+                    white-space: nowrap;
+                    margin-bottom: .15rem;
+                    color: #444;
+                    &.intro, &.author{
+                        color: #999;
+                    }
+                    span{
+                        padding-right: .15rem;
+                        &:after{
+                            content: '|';
+                            padding-left: .15rem;
+                        }
+                        &:last-child:after{
+                            display: none;
+                        }
+                    }
+                    i{
+                        font-style: normal;
+                        color: red;
+                        margin-right: .04rem;
+                    }
+                }
+            }
+        }
+    }
+}

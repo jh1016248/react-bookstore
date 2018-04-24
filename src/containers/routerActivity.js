@@ -67,7 +67,6 @@ export default (WrappedComponent) => {
         }
 
         render() {
-            console.log(this.props)
             let props = this.props
             let obj = {
                 params: props.params,
