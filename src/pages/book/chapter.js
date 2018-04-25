@@ -47,8 +47,12 @@ class Chapter extends Component {
         })
     }
 
+    chooseChapter(index) {
+        this.props.history.push('/book/' + this.props.params.id + '/' + (index + 1))
+    }
+
     render() {
-        let chapterList = this.state.chapterList && (this.state.reverse ? this.state.chapterList : this.state.chapterList.reverse())
+        let chapterList = this.state.chapterList && (this.state.reverse ? this.state.chapterList.reverse() : this.state.chapterList)
         return (
             <div className="page pt90">
                 <Header title={this.state.title || '章节列表'}/>
@@ -56,7 +60,7 @@ class Chapter extends Component {
                     <div><strong>目录</strong><span>共{ chapterList.length }章</span></div>
                     <span onClick={this.reverseList.bind(this)}>{this.state.reverse ? '正序' : '倒序'}</span>
                 </div>
-                <ChapterList list={chapterList}/>
+                <ChapterList list={chapterList}  chooseChapter={this.chooseChapter.bind(this)}/>
             </div>
         )
     }

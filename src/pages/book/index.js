@@ -70,9 +70,6 @@ class Book extends Component {
                     目录
                     <span className="fr">{bookInfo.lastChapter}<i className="iconfont icon-right"></i></span>
                 </Link>
-
-                <div style={{height: '10000px'}}></div>
-
             </div>
         )
     }
