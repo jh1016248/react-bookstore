@@ -8,6 +8,14 @@ module.exports = [
         },
     },
     {
+        path: '/book/:id/chapter',
+        getComponent(nextState, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../pages/book/chapter').default)
+            }, 'Chapter')
+        }
+    },
+    {
         path: '/book/:id/category',
         getComponent(nextState, cb) {
             require.ensure([], (require) => {

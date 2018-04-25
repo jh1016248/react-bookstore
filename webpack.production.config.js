@@ -13,7 +13,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, '/dist/'),
         filename: '[name].js',
-        publicPath: '/',
+        publicPath: '',
         chunkFilename: '[name].[chunkhash:5].chunk.js'
     },
     plugins: [
@@ -67,9 +67,17 @@ module.exports = {
                 loader: "style!css"
             },
             {
+                test: /\.(jpg|png)$/, 
+                loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]'
+            },
+            {
                 test: /\.less/,
                 loader: 'style-loader!css-loader!less-loader'
-            }
+            },
+            {
+                test: /\.(svg|woff|woff2|ttf|eot)$/,
+                loader: 'file-loader'
+            },
         ]
     },
     postcss: [

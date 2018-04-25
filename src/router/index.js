@@ -7,7 +7,6 @@ import Index from '../pages/index'
 import Header from '../components/header'
 import { Toast } from 'react-weui'
 
-sessionStorage.clear()
 class App extends Component {
     static propTypes = {
         direction: PropTypes.string,

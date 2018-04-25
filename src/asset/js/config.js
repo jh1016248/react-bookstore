@@ -17,12 +17,17 @@ const typeList = [
     }
 ]
 const imgDomain = 'http://statics.zhuishushenqi.com/';
-const imgLinkFomat = function (img) {
+const imgLinkFomat = function (img){
     return 'http' + decodeURIComponent(img).split('http')[1]
+}
+
+const addWan = function (num){
+    return num >= 10000 ? (num / 10000).toFixed(2) + '万' : num
 }
 
 export {
     typeList,
     imgDomain,
-    imgLinkFomat
+    imgLinkFomat,
+    addWan
 }

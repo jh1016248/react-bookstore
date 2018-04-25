@@ -4,7 +4,7 @@ import RouterActivity from '../../containers/routerActivity'
 import { getCategoryInfo, getSubCategories } from '../../api/'
 import Header from '../../components/header'
 import FilterWrap from '../../components/filterWrap'
-import { typeList } from '../../asset/data/config'
+import { typeList } from '../../asset/js/config'
 import BookList from '../../components/bookList'
 import { InfiniteLoader } from 'react-weui'
 

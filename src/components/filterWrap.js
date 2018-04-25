@@ -16,6 +16,15 @@ class FilterWrap extends Component {
         super()
     }
 
+    shouldComponentUpdate(nextProps) {
+        if(this.props.list == [] || this.indexList == []) {
+            return true
+        }
+        else{
+            return !(JSON.stringify(nextProps.list) == JSON.stringify(this.props.list) && JSON.stringify(nextProps.indexList) == JSON.stringify(this.props.indexList) && this.props.showMinus == nextProps.showMinus)
+        }
+    }
+
     handleClick(index, subIndex) {
         this.props.changeIndex(index, subIndex)
     }
@@ -48,14 +57,22 @@ class FilterWrap extends Component {
                 }
             </div>
         )
-        let stateName = this.props.list.map((item, index) => {
-            
+
+        let filterName = this.props.list.map((item, index) => {
+            return item.name ? this.props.list[index][this.props.indexList[index]] : this.props.list[index][this.props.indexList[index]]
         })
+
+        let filterTitle = filterName.map((item, index) => {
+            return (index == 0 ? '' : ' - ') + (item && item.name ? item.name : item) 
+        })
+        
         let minus = (
             <div className="minus">
-                全部-热门<span className="iconfont icon-arrow-top"></span>
+                {filterTitle}
+                <span className="iconfont icon-arrow-top"></span>
             </div>
         )
+
         return (
             <div className="filter-wrap">
                 {this.props.showMinus ? minus : details}

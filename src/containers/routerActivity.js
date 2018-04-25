@@ -74,7 +74,8 @@ export default (WrappedComponent) => {
                 history: props.history,
                 routeParams: props.routeParams,
                 router: props.router,
-                routes: props.routes
+                routes: props.routes,
+                changeLoading: props.changeLoading
             }
             return <WrappedComponent {...obj}/>
                 

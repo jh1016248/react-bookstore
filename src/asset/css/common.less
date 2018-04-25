@@ -24,6 +24,46 @@
     box-sizing: border-box;
 }
 
+.pt90{
+    padding-top: .9rem;
+}
+
+.spacing-p{
+    span{
+        padding-right: .15rem;
+        &:after{
+            content: '|';
+            padding-left: .15rem;
+            color: #666;
+            font-size: .2rem;
+            vertical-align: top;
+        }
+        &:last-child:after{
+            display: none;
+        }
+    }
+    .red{
+        color: red;
+    }
+}
+
+.btn{
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: .04rem;
+    &.btn-empty{
+        color: #b93321;
+        background: #fff;
+        border: .015rem solid #b93321;
+    }
+    &.btn-red{
+        background: #b93321;
+        color: #fff;
+        border: .015rem solid #b93321;
+    }
+}
+
 .fade-in-right-enter {
     opacity: 0.01;
     transform: translateX(100%);

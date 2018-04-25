@@ -43,7 +43,7 @@ blockquote:before, blockquote:after, q:before, q:after {
 }
 
 select {
-    -webkit-appearance:button;
+    -webkit-appearance: button;
     border: 0px;
 }
 
@@ -61,4 +61,8 @@ table {
 
 .clearfix {
     *zoom: 1;
+}
+
+.fr{
+    float: right;
 }

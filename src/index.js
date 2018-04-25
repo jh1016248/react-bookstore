@@ -13,6 +13,8 @@ import './asset/css/index.less'
 import 'weui'
 import 'react-weui/build/packages/react-weui.css'
 
+
+sessionStorage.clear()
 // 添加响应拦截器
 axios.interceptors.response.use(function (res) {
     if(res.data.code == 1) {

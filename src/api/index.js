@@ -19,10 +19,24 @@ const getCategoryInfo = (sendData) => {
     return checkHistory(host + '/category-info?gender='+ sendData.gender +'&type='+ sendData.type +'&major='+ sendData.major +'&minor='+ sendData.minor +'&start='+ sendData.start +'&limit=' + sendData.limit)
 }
 
+//获取书源
+///book-sources?view=summary&book=567d2cb9ee0e56bc713cb2c0
+const getBookSources = (id) => {
+    return checkHistory(host + '/book-sources?view=summary&book=' + id)
+}
+
+// 获取书籍章节
+// url: http://novel.juhe.im/book-chapters/56f8da09176d03ac1983f6cd
+const getBookChapters = (id) => {
+    return checkHistory(host + '/book-chapters/' + id)
+}
+
+
 //获取书籍详情  http://novel.juhe.im/book-info/53115e30173bfacb4904897e
 const getBookInfo = id => {
     return checkHistory(host + '/book-info/' + id)
 }
+
 
 //获取书籍相关推荐 http://novel.juhe.im/recommend/53115e30173bfacb4904897e
 const getRecommend = id => {
@@ -50,6 +64,8 @@ export {
     getCategories,
     getSubCategories,
     getCategoryInfo,
+    getBookChapters,
+    getBookSources,
     getBookInfo,
     getRecommend,
     getAuthorBooks,
