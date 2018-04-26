@@ -34,5 +34,9 @@ router
                 /category
                 /comment
     
-    
-1、react-redux dispatch修改数据需要每次都返回所有state (...state)
+0、生命周期
+    componentWillMount > render > componentDidMount > componentWillReceiveProps > shouldComponentUpdate > componentWillUpDate > render > componentDidUpdate
+
+1、react-redux: dispatch修改数据需要每次都返回所有state (...state)
+
+2、渲染html: dangerouslySetInnerHTML={{__html: content}}

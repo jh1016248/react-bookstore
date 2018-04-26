@@ -6,9 +6,10 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     // The entry file. All your src roots fromn here.
-    entry: [
-        path.join(__dirname, 'src/index.js')
-    ],
+    entry: {
+        main: path.join(__dirname, 'src/index.js'),
+        vendor: ['react', 'react-router', 'react-redux', 'prop-types', 'axios']
+    },
     // Where you want the output to go
     output: {
         path: path.join(__dirname, '/dist/'),
@@ -40,6 +41,10 @@ module.exports = {
         // plugin for passing in data to the js, like what NODE_ENV we are in.
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production')
+        }),
+
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "vendor" // 指定公共 bundle 的名字。
         })
     ],
 

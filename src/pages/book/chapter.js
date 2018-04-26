@@ -1,44 +1,29 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import RouterActivity from '../../containers/routerActivity'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 import Header from '../../components/header'
+import { browserHistory } from 'react-router'
 import { getBookChapters, getBookSources } from '../../api/index'
-import ChapterList from '../../components/chapterList'
+import ChapterList from '../../containers/chapterList'
 
 import './styles/chapter.less'
 
 class Chapter extends Component {
+    static propTypes = {
+        chapterList: PropTypes.array
+    }
     constructor(props) {
         super(props)
 
         this.state = {
-            chapterList: [],
             reverse: false,
-            title: '',
         }
     }
     
     componentWillMount() {
-        getBookSources(this.props.params.id)
-            .then(res => {
-                if(res.code == 1) {
-                    let sourceId = res.data[0]._id
-                    this.getBookChapterList(sourceId)
-                }
-            })
-    }
-
-    getBookChapterList(id) {
-        getBookChapters(id)
-            .then(res => {
-                if(res.code == 1) {
-                    console.log(res)
-                    this.setState({
-                        chapterList: res.data.chapters,
-                        title: res.data.name
-                    })
-                }
-            })
+        
     }
 
     reverseList() {
@@ -48,22 +33,25 @@ class Chapter extends Component {
     }
 
     chooseChapter(index) {
-        this.props.history.push('/book/' + this.props.params.id + '/' + (index + 1))
+        browserHistory.push('/book/' + this.props.params.id + '/' + (index + 1))
     }
 
     render() {
-        let chapterList = this.state.chapterList && (this.state.reverse ? this.state.chapterList.reverse() : this.state.chapterList)
         return (
             <div className="page pt90">
                 <Header title={this.state.title || '章节列表'}/>
                 <div className="chapter-header">
-                    <div><strong>目录</strong><span>共{ chapterList.length }章</span></div>
+                    <div><strong>目录</strong><span>共{ this.props.chapterList.length }章</span></div>
                     <span onClick={this.reverseList.bind(this)}>{this.state.reverse ? '正序' : '倒序'}</span>
                 </div>
-                <ChapterList list={chapterList}  chooseChapter={this.chooseChapter.bind(this)}/>
+                {this.props.params.id ? (<ChapterList bookId={this.props.params.id} reverse={this.state.reverse} chooseChapter={this.chooseChapter.bind(this)}/>) : ''}
             </div>
         )
     }
 }
 
-export default RouterActivity(Chapter)
+export default RouterActivity(connect(state => {
+    return {
+        chapterList: state.Book.chapterList
+    }
+})(Chapter))

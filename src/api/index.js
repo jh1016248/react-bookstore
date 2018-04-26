@@ -37,6 +37,15 @@ const getBookInfo = id => {
     return checkHistory(host + '/book-info/' + id)
 }
 
+/*
+获取章节详细内容
+url: http://novel.juhe.im/chapters/http%3A%2F%2Fvip.zhuishushenqi.com%2Fchapter%2F56f8da09176d03ac1983f6d7%3Fcv%3D1486473051386 注意这里需要进行url编码
+*/
+
+const getChapters = link => {
+    return axios.get(host + '/chapters/' + encodeURIComponent(link))
+}
+
 
 //获取书籍相关推荐 http://novel.juhe.im/recommend/53115e30173bfacb4904897e
 const getRecommend = id => {
@@ -66,6 +75,7 @@ export {
     getCategoryInfo,
     getBookChapters,
     getBookSources,
+    getChapters,
     getBookInfo,
     getRecommend,
     getAuthorBooks,

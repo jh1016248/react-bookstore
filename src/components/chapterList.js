@@ -12,6 +12,9 @@ class ChapterList extends Component {
     constructor(){
         super()
     }
+    
+    componentWillMount() {
+    }
 
     chooseChapter(index) {
         this.props.chooseChapter(index)

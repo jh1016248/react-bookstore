@@ -1,25 +1,34 @@
-const INIT_MESSAGE_LSIT = 'INIT_MESSAGE_LSIT'
-const ADD_MESSAGE = 'ADD_MESSAGE'
+const SET_BOOK_ID = 'SET_BOOK_ID'
+const SET_BOOK_CHAPTERS = 'SET_BOOK_CHAPTERS'
+const SET_SOURCE_LIST = 'SET_SOURCE_LIST'
 
-let MessageList = (state, action) => {
+let Book = (state, action) => {
     if(!state) {
         state = {
-            messageList: []
+            _bookId: '',
+            sourceList: [],
+            chapterList: [],
         }
     }
     switch (action.type) {
-        case INIT_MESSAGE_LSIT: 
+        case SET_BOOK_ID: 
             return {
-                messageList: action.list
+                ...state,
+                _bookId: action._bookId,
             }
-        case ADD_MESSAGE:
+        case SET_BOOK_CHAPTERS: 
             return {
-                messageList: [...state.messageList, action.item]
+                ...state,
+                chapterList: action.chapterList
+            }
+        case SET_SOURCE_LIST: 
+            return {
+                ...state,
+                sourceList: action.sourceList
             }
         default:
             return state
     }
 }
 
-export default MessageList
-
+export default Book
