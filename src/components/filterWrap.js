@@ -21,7 +21,7 @@ class FilterWrap extends Component {
             return true
         }
         else{
-            return !(JSON.stringify(nextProps.list) == JSON.stringify(this.props.list) && JSON.stringify(nextProps.indexList) == JSON.stringify(this.props.indexList) && this.props.showMinus == nextProps.showMinus)
+            return (JSON.stringify(nextProps) == JSON.stringify(this.props))
         }
     }
 

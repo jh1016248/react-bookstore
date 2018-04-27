@@ -43,7 +43,7 @@ url: http://novel.juhe.im/chapters/http%3A%2F%2Fvip.zhuishushenqi.com%2Fchapter%
 */
 
 const getChapters = link => {
-    return axios.get(host + '/chapters/' + encodeURIComponent(link))
+    return checkHistory(host + '/chapters/' + encodeURIComponent(link))
 }
 
 
@@ -58,7 +58,10 @@ const getAuthorBooks = author => {
 }
 
 function checkHistory(name) {
+    let loadingEl = document.querySelector("#request-loading")
+    loadingEl && (loadingEl.style.display = 'block')
     let history = localStorage.getItem(name)
+    return axios.get(name)
     if(history && history !== '') {
         return new Promise((resolve, reject) => {
             resolve(JSON.parse(history))

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import './styles/bookList.less'
 import { imgLinkFomat, addWan } from '../asset/js/config'
-import { browserHistory } from 'react-router'
+import { hashHistory } from 'react-router'
 
 class BookList extends Component {
     static propTypes = {
@@ -21,7 +21,7 @@ class BookList extends Component {
     }
 
     toBookDetail(item) {
-        browserHistory.push('/book/' + item._id)
+        hashHistory.push('/book/' + item._id)
     }
 
     render() {

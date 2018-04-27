@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Router, IndexRoute, Link, Route, browserHistory } from 'react-router'
+import { Router, IndexRoute, Link, Route, hashHistory } from 'react-router'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
@@ -19,6 +19,7 @@ class App extends Component {
     }
 
     componentWillMount() {
+        
     }
 	
 	render() {
@@ -35,6 +36,7 @@ class App extends Component {
 					})}
                 </ReactCSSTransitionGroup>
                 <Toast show={ this.props.isLoading } icon="loading"/>
+                <div className="weui-toast" id="request-loading"><i className="weui-loading weui-icon_toast"></i><p className="weui-toast_content"></p></div>
 			</div>
 		);
 	}
@@ -72,7 +74,7 @@ class router extends Component {
     
 	render() {
 		return (
-			<Router history={ browserHistory } routes={ rootRoute }></Router>
+			<Router history={ hashHistory } routes={ rootRoute }></Router>
 		);
 	}
 }

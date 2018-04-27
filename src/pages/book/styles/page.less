@@ -1,9 +1,38 @@
 .container{
     font-size: .32rem;
     padding: .2rem;
+    box-sizing: border-box;
+    width: 100%;
+    .chapter-container{
+        margin-bottom: .6rem;
+    }
+    > div{
+        overflow: visible;
+    }
+    h3{
+        font-size: .34rem;
+        margin-bottom: .2rem;
+        line-height: .6rem;
+    }
     p{
         margin-bottom: .2rem;
         line-height: .6rem;
         text-indent: 2em;
+    }
+}
+
+.side-nav{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 60%;
+    height: 100%;
+    overflow: scroll;
+    background: #fff;
+    box-shadow: .02rem 0 .08rem rgba(0,0,0,.2);
+    transform: translateX(-101%);
+    transition: all .3s;
+    &.active{
+        transform: translateX(0);
     }
 }

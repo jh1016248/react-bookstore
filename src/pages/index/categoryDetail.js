@@ -28,6 +28,19 @@ class CategoryDetail extends Component {
             major = props.params.keyword
         this.getSubCategory(major, gender)
     }
+
+    componentDidMount() {
+        let elPage = this.refs.page;
+        elPage = document.querySelector(".react-weui-infiniteloader")
+        let fontSize = parseInt(document.documentElement.style.fontSize)
+        elPage.onscroll = () => {
+            let elScrollTop = elPage.scrollTop
+            let showMinus = elScrollTop >= fontSize * .9
+            this.setState({
+                showMinus
+            })
+        }
+    }
     
     getSubCategory(major, gender) {
         getSubCategories()
@@ -82,19 +95,6 @@ class CategoryDetail extends Component {
                 pageIndex: 0
             }, () => {
                 this.getCategorys()
-            })
-        }
-    }
-
-    componentDidMount() {
-        let elPage = this.refs.page;
-        elPage = document.querySelector(".react-weui-infiniteloader")
-        let fontSize = parseInt(document.documentElement.style.fontSize)
-        elPage.onscroll = () => {
-            let elScrollTop = elPage.scrollTop
-            let showMinus = elScrollTop >= fontSize * .9
-            this.setState({
-                showMinus
             })
         }
     }

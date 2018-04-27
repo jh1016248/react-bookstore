@@ -6,6 +6,7 @@ import Header from '../../components/header'
 import { connect } from 'react-redux'
 import { getChapters } from '../../api/index'
 import ChapterList from '../../containers/chapterList'
+import { LoadMore } from 'react-weui'
 
 import './styles/page.less'
 
@@ -19,7 +20,9 @@ class Page extends Component {
         this.state = {
             pageInfo: '',
             nowPage: '',
-            nowPageNum: 0,
+            showChapter: false,
+            showLoading: false,
+            contentHtml: '',
         }
     }
     
@@ -27,22 +30,22 @@ class Page extends Component {
         this.getNowPage()
     }
 
-    getNowPage() {
-        if(this.props.chapterList.length) {
-            let nowPage = this.props.chapterList[this.props.params.page - 1]
-            this.getPageInfo(nowPage)
+    componentDidMount() {
+        let scrollEl = document.querySelector(".page")
+        let winHeight = window.innerHeight
+        scrollEl.onscroll = () =>{
+            if(!this.state.showLoading) {
+                let bodyHeight = document.querySelector(".container").scrollHeight
+                let top = scrollEl.scrollTop
+                if(top + winHeight >= bodyHeight){
+                    this.setState({
+                        showLoading: true
+                    }, () => {
+                        this.chooseChapter(this.state.pageInfo.order)
+                    })
+                }
+            }
         }
-    }
-
-    getPageInfo(nowPage) {
-        document.title = nowPage.title
-        getChapters(nowPage.link)
-            .then(res => {
-                this.setState({
-                    pageInfo: res.data.chapter,
-                    nowPage
-                })
-            })
     }
 
     componentDidUpdate() {
@@ -51,20 +54,60 @@ class Page extends Component {
         }
     }
 
-    chooseChapter(index) {
-        console.log(index)
+    getNowPage() {
+        if(this.props.chapterList.length) {
+            let nowPage = this.props.chapterList[this.props.params.page - 1]
+            this.getPageInfo(nowPage)
+        }
+    }   
+
+    getPageInfo(nowPage, cb) {
+        document.title = nowPage.title
+        getChapters(nowPage.link)
+            .then(res => {
+                this.setState({
+                    pageInfo: res.data.chapter,
+                    nowPage
+                }, () => {
+                    let cpContent = this.state.pageInfo.cpContent
+                    let content = cpContent ? '<div class="chapter-container">' + ('<h3>'+ this.state.pageInfo.title +'</h3><p>' + cpContent.replace(/\n/g, '</p><p>') + '</p></div>').replace(/\s+/g, ''): ''
+                    // cb && cb()
+                    this.setState({
+                        contentHtml: this.state.contentHtml + content,
+                        showLoading: false,
+                    })
+                })
+            })
     }
 
+    chooseChapter(index) {
+        let nowPage = this.props.chapterList[index]
+        // this.getPageInfo(nowPage, () => {
+        //     document.querySelector(".page").scrollTop = 0
+        //     this.setState({
+        //         showLoading: false
+        //     })
+        // })
+        this.getPageInfo(nowPage)
+    }
+
+    showChapterWrap() {
+        this.setState({
+            showChapter: !this.state.showChapter
+        })
+    }
+
+
     render() {
-        let cpContent = this.state.pageInfo.cpContent
-        let content = cpContent ? ('<p>' + cpContent.replace(/\n/g, '</p><p>') + '</p>').replace(/\s+/g, '') : '<p>加载中...</p>'
+        
         return (
-            <div className="page">
+            <div className="page" onClick={this.showChapterWrap.bind(this)}>
                 <div className="container">
-                    <div dangerouslySetInnerHTML={{__html: content}}></div>
+                    <div dangerouslySetInnerHTML={{__html: this.state.contentHtml}}></div>
+                    {this.state.showLoading ? <LoadMore loading>加载下一页</LoadMore> : ''}
                 </div>
-                <div className="side-nav" style={{display: 'none'}}>
-                    {this.props.params.id ? (<ChapterList bookId={this.props.params.id} reverse={false} chooseChapter={this.chooseChapter.bind(this)}/>) : ''}
+                <div className={this.state.showChapter ? 'side-nav active' : 'side-nav'}>
+                    {this.props.params.id ? (<ChapterList bookId={this.props.params.id} reverse={false} nowIndex={this.state.pageInfo.order - 1} chooseChapter={this.chooseChapter.bind(this)}/>) : ''}
                 </div>
             </div>
         )

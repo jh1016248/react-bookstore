@@ -4,7 +4,7 @@ import RouterActivity from '../../containers/routerActivity'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Header from '../../components/header'
-import { browserHistory } from 'react-router'
+import { hashHistory } from 'react-router'
 import { getBookChapters, getBookSources } from '../../api/index'
 import ChapterList from '../../containers/chapterList'
 
@@ -33,7 +33,7 @@ class Chapter extends Component {
     }
 
     chooseChapter(index) {
-        browserHistory.push('/book/' + this.props.params.id + '/' + (index + 1))
+        hashHistory.push('/book/' + this.props.params.id + '/' + (index + 1))
     }
 
     render() {

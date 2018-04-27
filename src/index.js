@@ -20,6 +20,9 @@ axios.interceptors.response.use(function (res) {
     if(res.data.code == 1) {
         localStorage.setItem(res.config.url, JSON.stringify(res.data))
     }
+    
+    let loadingEl = document.querySelector("#request-loading")
+    loadingEl && (loadingEl.style.display = 'none')
     return res.data
   }, function (error) {
     return Promise.reject(error)
