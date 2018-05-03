@@ -1,5 +1,5 @@
 import axios from 'axios';
-const host = 'http://novel.juhe.im';
+const host = '/api';
 //获取带书籍数量的父分类
 const getCategories = () => {
    return checkHistory(host + '/categories')
@@ -61,7 +61,6 @@ function checkHistory(name) {
     let loadingEl = document.querySelector("#request-loading")
     loadingEl && (loadingEl.style.display = 'block')
     let history = localStorage.getItem(name)
-    return axios.get(name)
     if(history && history !== '') {
         return new Promise((resolve, reject) => {
             resolve(JSON.parse(history))
