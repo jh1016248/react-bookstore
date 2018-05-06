@@ -41,7 +41,7 @@ class Page extends Component {
                     this.setState({
                         showLoading: true
                     }, () => {
-                        this.chooseChapter(this.state.pageInfo.order)
+                        this.chooseChapter(this.state.nowPage.order, false, false)
                     })
                 }
             }
@@ -61,34 +61,33 @@ class Page extends Component {
         }
     }   
 
-    getPageInfo(nowPage, cb) {
-        document.title = nowPage.title
-        getChapters(nowPage.link)
+    getPageInfo(nowPage, resetNowPage, toTop) {
+        nowPage && getChapters(nowPage.link)
             .then(res => {
                 this.setState({
-                    pageInfo: res.data.chapter,
+                    pageInfo: res.chapter,
                     nowPage
                 }, () => {
                     let cpContent = this.state.pageInfo.cpContent
                     let content = cpContent ? '<div class="chapter-container">' + ('<h3>'+ this.state.pageInfo.title +'</h3><p>' + cpContent.replace(/\n/g, '</p><p>') + '</p></div>').replace(/\s+/g, ''): ''
-                    // cb && cb()
+                    
+                    let contentHtml = resetNowPage ? content : this.state.contentHtml  + content
+
                     this.setState({
-                        contentHtml: this.state.contentHtml + content,
+                        contentHtml,
                         showLoading: false,
+                    }, () => {
+                        nowPage && (document.title = nowPage.title)
+                        let scrollEl = document.querySelector(".page")
+                        toTop && (scrollEl.scrollTop = 0)
                     })
                 })
             })
     }
 
-    chooseChapter(index) {
+    chooseChapter(index, resetNowPage = true, toTop = true) {
         let nowPage = this.props.chapterList[index]
-        // this.getPageInfo(nowPage, () => {
-        //     document.querySelector(".page").scrollTop = 0
-        //     this.setState({
-        //         showLoading: false
-        //     })
-        // })
-        this.getPageInfo(nowPage)
+        this.getPageInfo(nowPage, resetNowPage, toTop)
     }
 
     showChapterWrap() {
@@ -99,7 +98,6 @@ class Page extends Component {
 
 
     render() {
-        
         return (
             <div className="page" onClick={this.showChapterWrap.bind(this)}>
                 <div className="container">

@@ -17,10 +17,9 @@ import 'react-weui/build/packages/react-weui.css'
 sessionStorage.clear()
 // 添加响应拦截器
 axios.interceptors.response.use(function (res) {
-    if(res.data.code == 1) {
+    if(res) {
         localStorage.setItem(res.config.url, JSON.stringify(res.data))
     }
-    
     let loadingEl = document.querySelector("#request-loading")
     loadingEl && (loadingEl.style.display = 'none')
     return res.data

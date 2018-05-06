@@ -19,10 +19,9 @@ class Book extends Component {
     componentWillMount() {
         let id = this.props.params.id
         getBookInfo(id).then(res => {
-            console.log(res)
-            if(res.code == 1) {
+            if(res) {
                 this.setState({
-                    bookInfo: res.data,
+                    bookInfo: res,
                 })
             }
         })

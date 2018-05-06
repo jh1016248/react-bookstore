@@ -59,10 +59,12 @@ const getAuthorBooks = author => {
 
 function checkHistory(name) {
     let loadingEl = document.querySelector("#request-loading")
-    loadingEl && (loadingEl.style.display = 'block')
     let history = localStorage.getItem(name)
+    loadingEl && (loadingEl.style.display = 'block')
+    // return axios.get(name)
     if(history && history !== '') {
         return new Promise((resolve, reject) => {
+            loadingEl && (loadingEl.style.display = 'none')
             resolve(JSON.parse(history))
         })
     }

@@ -21,8 +21,8 @@ class Category extends Component {
                     female: '女生',
                     male: '男生',
                 }
-                if(res.code == 1) {
-                    let data = res.data
+                if(res.ok) {
+                    let data = res
                     let categoryList = []
                     for(let i in data) {
                         if(nameList[i]) {
@@ -35,6 +35,8 @@ class Category extends Component {
                     }
                     this.setState({
                         categoryList
+                    }, () => {
+                        console.log(this.state)
                     })
                 }
             })

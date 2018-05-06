@@ -14,7 +14,6 @@ class CategoryItem extends Component {
         super(props)
     }
 
-
     render() {
         const lists = this.props.list.map((item, index) => {
             return (

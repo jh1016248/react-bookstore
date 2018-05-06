@@ -12,10 +12,7 @@ class Index extends Component {
     }
 
     componentWillMount() {
-        getCategories()
-            .then(res => {
-                console.log(res)
-            })
+        
     }
 
     render() {

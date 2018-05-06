@@ -45,8 +45,8 @@ class CategoryDetail extends Component {
     getSubCategory(major, gender) {
         getSubCategories()
             .then(res => {
-                if(res.code == 1) {
-                    let list = res.data[gender]
+                if(res.ok) {
+                    let list = res[gender]
                     let subList = list.filter(item => item.major == major)
                     subList[0].mins.unshift('全部')
                     let indexList = [0,0]
@@ -78,9 +78,8 @@ class CategoryDetail extends Component {
         }
 
         getCategoryInfo(sendData).then(res => {
-            console.log(res.data)
             this.setState({
-                bookList: res.data.books
+                bookList: res.books
             })
         })
     }

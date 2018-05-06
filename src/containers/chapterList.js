@@ -28,8 +28,8 @@ class ChapterContainer extends Component {
         if(this.props.bookId != this.props._bookId) {
             getBookSources(this.props.bookId)
                 .then(res => {
-                    if(res.code == 1) {
-                        let id = res.data[0]._id
+                    if(res) {
+                        let id = res[0]._id
                         this.props.setBookId(id)
                         this.getBookChapters(id)
                     }
@@ -43,9 +43,8 @@ class ChapterContainer extends Component {
     getBookChapters(id) {
         getBookChapters(id)
             .then(res => {
-                console.log(res)
-                if(res.code == 1) {
-                    this.props.setBookChapters(res.data.chapters)
+                if(res) {
+                    this.props.setBookChapters(res.chapters)
                 }
             })
     }
