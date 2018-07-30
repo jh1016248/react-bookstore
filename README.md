@@ -13,13 +13,13 @@ npm run build
 ##参考
 * [react小书](http://huziketang.mangojuice.top/books/react/) 
 
-//按需加载 https://segmentfault.com/a/1190000007141049
+//router 按需加载 https://segmentfault.com/a/1190000007141049
 
 router
     /index
         /index
         /category (分类)
-            /keyword
+            /keyword?gender=
         /ranking (排行榜)
             /keyword
         /recommend (推荐)
@@ -40,3 +40,13 @@ router
 1、react-redux: dispatch修改数据需要每次都返回所有state (...state)
 
 2、渲染html: dangerouslySetInnerHTML={{__html: content}}
+
+3、
+
+
+redux
+维护一份state，限制要修改state只能通过dispatch方法来完成，并且在dispatch里面通过观察者模式，来实现每次dispatch修改state后重新渲染视图。
+
+
+less sass scoped 深度覆盖样式
+.parent /deep/ .child { /* ... */ }

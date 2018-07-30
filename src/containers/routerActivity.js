@@ -78,7 +78,6 @@ export default (WrappedComponent) => {
                 changeLoading: props.changeLoading
             }
             return <WrappedComponent {...obj}/>
-                
         }
     }
 

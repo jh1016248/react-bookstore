@@ -4,7 +4,7 @@ import RouterActivity from '../../containers/routerActivity'
 import Header from '../../components/header'
 import NeedHideBox from '../../components/needHideBox'
 import { getBookInfo } from '../../api/index'
-import { addWan } from '../../asset/js/config'
+import { imgLinkFomat, addWan } from '../../asset/js/config'
 
 import './styles/index.less'
 
@@ -34,7 +34,7 @@ class Book extends Component {
                 <Header title="书籍详情"/>
                 <div className="book-box">
                     <div className="clearfix">
-                        <img src="http://statics.zhuishushenqi.com/agent/http%3A%2F%2Fimg.1391.com%2Fapi%2Fv1%2Fbookcenter%2Fcover%2F1%2F2185681%2F2185681_40c9ddb71b0048c394cf58df0dfca732.jpg%2F"/>
+                        <img src={imgLinkFomat(bookInfo.cover)}/>
                         <div className="info">
                             <h3>{bookInfo.title}</h3>
                             <p className="spacing-p"><span className="red">{bookInfo.author}</span><span>{bookInfo.minorCate}</span><span>{addWan(bookInfo.wordCount)}字</span></p>
